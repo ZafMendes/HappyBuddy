@@ -421,28 +421,28 @@ void MainFrame::OnAnxietySubmit(wxCommandEvent& evt) {
         anxietySubmit->Hide();
         int yPos = 100;
         std::vector<std::string> questions;
-        questions.push_back("We will now begin the questionaire to diagnose any stress disorder! Over the last 2 weeks, how often have you been bothered\nby any of the following problems? 0 = not at all | 1 = several days | 2 = More than half the days | 3 = Nearly every day");
-        questions.push_back("1. Do you have trouble staying focused on the present moment");
-        questions.push_back("2. How often do you feel overwhelmed with your life");
-        questions.push_back("3. Do you struggle to fall asleep at night");
-        questions.push_back("4. On average, do you get less than 7-8 hours of sleep a night");
-        questions.push_back("5. Poor appetite or overeating");
-        questions.push_back("6. Do you experience headaches or muscle tension");
-        questions.push_back("7. Trouble concentrating on things, such as reading the newspaper or watching television");
-        questions.push_back("8. Do you feel like withdrawing from family, friends, and isolating yourself");
-        questions.push_back("9. Do you feel irritable, annoyed, or angry over trivial issues");
+        questions.emplace_back("We will now begin the questionaire to diagnose any stress disorder! Over the last 2 weeks, how often have you been bothered\nby any of the following problems? 0 = not at all | 1 = several days | 2 = More than half the days | 3 = Nearly every day");
+        questions.emplace_back("1. Do you have trouble staying focused on the present moment");
+        questions.emplace_back("2. How often do you feel overwhelmed with your life");
+        questions.emplace_back("3. Do you struggle to fall asleep at night");
+        questions.emplace_back("4. On average, do you get less than 7-8 hours of sleep a night");
+        questions.emplace_back("5. Poor appetite or overeating");
+        questions.emplace_back("6. Do you experience headaches or muscle tension");
+        questions.emplace_back("7. Trouble concentrating on things, such as reading the newspaper or watching television");
+        questions.emplace_back("8. Do you feel like withdrawing from family, friends, and isolating yourself");
+        questions.emplace_back("9. Do you feel irritable, annoyed, or angry over trivial issues");
         for (int i = 0; i < questions.size(); i++) {
             stressQuestionnaire.push_back(new wxStaticText(panel, wxID_ANY, questions[i], wxPoint(30, i * 50 + yPos), wxDefaultSize));
         }
-        stressAnswers.push_back(new wxTextCtrl(panel, question1ID, "", wxPoint(40, 170)));
-        stressAnswers.push_back(new wxTextCtrl(panel, question2ID, "", wxPoint(40, 220)));
-        stressAnswers.push_back(new wxTextCtrl(panel, question3ID, "", wxPoint(40, 270)));
-        stressAnswers.push_back(new wxTextCtrl(panel, question4ID, "", wxPoint(40, 320)));
-        stressAnswers.push_back(new wxTextCtrl(panel, question5ID, "", wxPoint(40, 370)));
-        stressAnswers.push_back(new wxTextCtrl(panel, question6ID, "", wxPoint(40, 420)));
-        stressAnswers.push_back(new wxTextCtrl(panel, question7ID, "", wxPoint(40, 470)));
-        stressAnswers.push_back(new wxTextCtrl(panel, question8ID, "", wxPoint(40, 520)));
-        stressAnswers.push_back(new wxTextCtrl(panel, question9ID, "", wxPoint(40, 570)));
+        stressAnswers.emplace_back(new wxTextCtrl(panel, question1ID, "", wxPoint(40, 170)));
+        stressAnswers.emplace_back(new wxTextCtrl(panel, question2ID, "", wxPoint(40, 220)));
+        stressAnswers.emplace_back(new wxTextCtrl(panel, question3ID, "", wxPoint(40, 270)));
+        stressAnswers.emplace_back(new wxTextCtrl(panel, question4ID, "", wxPoint(40, 320)));
+        stressAnswers.emplace_back(new wxTextCtrl(panel, question5ID, "", wxPoint(40, 370)));
+        stressAnswers.emplace_back(new wxTextCtrl(panel, question6ID, "", wxPoint(40, 420)));
+        stressAnswers.emplace_back(new wxTextCtrl(panel, question7ID, "", wxPoint(40, 470)));
+        stressAnswers.emplace_back(new wxTextCtrl(panel, question8ID, "", wxPoint(40, 520)));
+        stressAnswers.emplace_back(new wxTextCtrl(panel, question9ID, "", wxPoint(40, 570)));
         for (int i = 0; i < anxietyQuestionnaire.size(); i++) {
             anxietyQuestionnaire[i]->Hide();
         }
@@ -473,7 +473,7 @@ void MainFrame::OnStressSubmit(wxCommandEvent& evt) {
     }
     else {
         for (int i = 0; i < stressAnswers.size(); i++) {
-            saveToFile.push_back(std::string(stressAnswers[i]->GetValue().mb_str()));
+            saveToFile.emplace_back(std::string(stressAnswers[i]->GetValue().mb_str()));
         }
         std::ofstream csv("UserData.csv", std::ios::app);
         if (!csv.is_open())
